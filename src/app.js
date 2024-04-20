@@ -28,31 +28,11 @@ app.get('/api/session', (req, res) => {
 app.get('/login', Login);
 app.get('/callback', callback);
 
-// Nuevas rutas de la API
-app.get('/api/me', async (req, res) => {
-  try {
-    const me = await spotifyApi.getMe();
-    res.json(me.body);
-  } catch (err) {
-    res.status(err.statusCode).json({ error: err.message });
-  }
-});
-
-app.get('/api/top-artists', async (req, res) => {
-  try {
-    const topArtists = await spotifyApi.getMyTopArtists();
-    res.json(topArtists.body);
-  } catch (err) {
-    res.status(err.statusCode).json({ error: err.message });
-  }
-});
-
-app.get('/api/top-tracks', async (req, res) => {
-  try {
-    const topTracks = await spotifyApi.getMyTopTracks();
-    res.json(topTracks.body);
-  } catch (err) {
-    res.status(err.statusCode).json({ error: err.message });
+app.get('/api/token', (req, res) => {
+  if (req.session.access_token) {
+    res.json({ access_token: req.session.access_token });
+  } else {
+    res.status(401).json({ error: 'No hay un token de acceso válido' });
   }
 });
 

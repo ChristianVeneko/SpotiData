@@ -12,5 +12,5 @@ export const scopes = [
 export const spotifyApi = new SpotifyWebApi({
   clientId: CLIENT_ID,
   clientSecret: SECRET_CLIENT,
-  redirectUri: 'http://localhost:3000/callback'
+  redirectUri: 'http://spotidata.onrender.com/callback'
 });

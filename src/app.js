@@ -1,10 +1,15 @@
 import express from 'express';
 import session from 'express-session';
 import morgan from 'morgan';
-import { Login, callback } from './routes/auth.routes.js';
-import { spotifyApi, scopes } from './config.js';
+import { Login, callback, refresh } from './routes/auth.routes.js';
+import cors from 'cors';
+
 
 const app = express();
+app.use(cors({
+  origin: 'http://localhost:5173', 
+  credentials: true 
+}));
 
 app.use(session({
   secret: 'yolavienuntaxi',
@@ -25,11 +30,12 @@ app.get('/api/session', (req, res) => {
 });
 
 app.get('/login', Login);
+app.get('/refresh', refresh);
 app.get('/callback', callback);
 
 app.get('/api/token', (req, res) => {
   if (req.session.access_token) {
-    res.json({ access_token: req.session.access_token });
+    res.json({ access_token: req.session.access_token, refresh_token: req.session.refresh_token});
   } else {
     res.status(401).json({ error: 'No hay un token de acceso válido' });
   }

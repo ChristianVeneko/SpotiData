@@ -11,6 +11,7 @@
   "author": "ChristianVeko, Josemigg16",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-session": "^1.18.0",
     "html": "^1.0.0",

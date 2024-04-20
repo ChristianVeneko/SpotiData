@@ -1,9 +1,8 @@
-import path from 'path';
 import express from 'express';
 import session from 'express-session';
 import morgan from 'morgan';
 import { Login, callback } from './routes/auth.routes.js';
-import { spotifyApi } from './config.js';
+import { spotifyApi, scopes } from './config.js';
 
 const app = express();
 

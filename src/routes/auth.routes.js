@@ -9,7 +9,7 @@ export const Login = (req, res) => {
 export const refresh = async (req, res) => {
   try {
     const refreshToken = req.session.refresh_token;
-
+    console.log('refreshToken');
     if (refreshToken) {
       const data = await spotifyApi.refreshAccessToken();
       const newAccessToken = data.body['access_token'];
@@ -48,7 +48,7 @@ export const callback = (req, res) => {
       console.log("refresh_token:", refresh_token);
 
       // Redirigir al frontend con el token de acceso como parámetro de consulta
-      res.redirect(`${AUTH_URL}/auth-callback?access_token=${access_token}`);
+      res.redirect(`${AUTH_URL}/auth-callback`);
     })
     .catch((error) => {
       console.error("Error getting Tokens:", error);

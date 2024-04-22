@@ -3,11 +3,13 @@ import session from 'express-session';
 import morgan from 'morgan';
 import { Login, callback, refresh } from './routes/auth.routes.js';
 import cors from 'cors';
+import dotenv from 'dotenv'
+import { AUTH_URL } from './config.js';
 
 
 const app = express();
 app.use(cors({
-  origin: 'http://localhost:5173', 
+  origin: `${AUTH_URL}`, 
   credentials: true 
 }));
 

@@ -9,8 +9,7 @@ import { AUTH_URL } from './config.js';
 
 const app = express();
 app.use(cors({
-  origin: `${AUTH_URL}`, 
-  credentials: true 
+  origin: `${AUTH_URL}` 
 }));
 
 app.use(session({

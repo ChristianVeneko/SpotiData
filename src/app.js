@@ -8,8 +8,6 @@ import dotenv from 'dotenv'
 
 const app = express();
 app.use(cors({
-  origin: ['https://spotidata.vercel.app', 'http://localhost:3000'], // Agrega más orígenes si es necesario
-  credentials: true
 }));
 
 app.use(session({

@@ -4,13 +4,12 @@ import morgan from 'morgan';
 import { Login, callback, refresh } from './routes/auth.routes.js';
 import cors from 'cors';
 import dotenv from 'dotenv'
-import { AUTH_URL } from './config.js';
 
 
 const app = express();
 app.use(cors({
-  origin: `${AUTH_URL}`, 
-  credentials: true 
+  origin: ['https://spotidata.vercel.app', 'http://localhost:3000'], // Agrega más orígenes si es necesario
+  credentials: true
 }));
 
 app.use(session({

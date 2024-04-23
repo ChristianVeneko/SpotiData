@@ -7,10 +7,6 @@ const SECRET_CLIENT = process.env.SECRET_CLIENT;
 const URL = process.env.URL;
 export const AUTH_URL = process.env.AUTH_URL;
 export const scopes = [
-  'user-read-email',
-  'streaming',
-  'user-read-private',
-  'user-library-read',
   "user-top-read"]
 
 

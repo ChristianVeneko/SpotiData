@@ -48,7 +48,7 @@ export const callback = (req, res) => {
       console.log("refresh_token:", refresh_token);
 
       // Redirigir al frontend con el token de acceso como parámetro de consulta
-      res.redirect(`${AUTH_URL}/auth-callback`);
+      res.redirect(`${AUTH_URL}/auth-callback?access_token=${access_token}&refresh_token=${refresh_token}`);
     })
     .catch((error) => {
       console.error("Error getting Tokens:", error);

@@ -32,16 +32,19 @@ app.get('/login', Login);
 app.get('/refresh', refresh);
 app.get('/callback', callback);
 
-app.get('/api/token', (req, res) => {
-  if (req.session.access_token) {
-    res.json({ access_token: req.session.access_token, refresh_token: req.session.refresh_token});
-  } else {
-    res.status(401).json({ error: 'No hay un token de acceso válido' });
+const requireAuth = (req, res, next) => {
+  if (!req.session.access_token) {
+    return res.status(401).json({ error: 'No hay un token de acceso válido' });
   }
+  next();
+};
+
+app.get('/api/token', requireAuth, (req, res) => {
+  res.json({ access_token: req.session.access_token, refresh_token: req.session.refresh_token });
 });
 
 app.get('/api/hello', (req, res) => {
-  res.json('HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+  res.json('HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa')
 });
 
 // Middleware de manejo de errores

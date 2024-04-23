@@ -1,6 +1,5 @@
 import express from 'express';
 import session from 'express-session';
-import morgan from 'morgan';
 import { Login, callback, refresh } from './routes/auth.routes.js';
 import cors from 'cors';
 import dotenv from 'dotenv'
@@ -19,7 +18,6 @@ app.use(session({
 }));
 
 app.use(express.json());
-app.use(morgan('dev'));
 
 app.get('/logout', (req, res) => {
   req.session.destroy();
@@ -40,6 +38,10 @@ app.get('/api/token', (req, res) => {
   } else {
     res.status(401).json({ error: 'No hay un token de acceso válido' });
   }
+});
+
+app.get('/api/hello', (req, res) => {
+  res.json('HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
 });
 
 // Middleware de manejo de errores
